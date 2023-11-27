@@ -1,0 +1,42 @@
+<div class="card vh-75 vw-100">
+
+    <a href="{% url 'post_detail' posts.0.id %}">
+     <img src="{{ posts.0.imagem_capa.url }}" class="card-img-top img-300" alt="Foto capitão américa">
+    </a>
+
+    <div class="card-body pb-4">
+      
+      <h5 class="card-title">
+        <a href="{% url 'post_detail' posts.0.id %}" style="text-decoration: none">{{ posts.0.titulo }}</a>
+      </h5>
+      <p class="card-text">
+        {{ posts.0.resumo |safe }}
+      </p>
+
+      <p class="card-text">
+        <small class="text-muted d-flex justify-content-end">
+          {{ posts.0.data_publicacao }}
+        </small>
+      </p>
+
+      <a href="#" class="btn btn-primary d-flex justify-content-center">Enviar</a>
+
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="d-flex justify-content-center">
+
+            <div class="span me-3 btn">
+              <i class="fa-solid fa-heart"></i> Curtir
+            </div>
+            <div class="span me-3 btn">
+              <i class="fa-solid fa-comment"></i> comentar
+            </div>
+            <div class="span me-3 btn">
+              <i class="fa-solid fa-share"></i> Compartilhar
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

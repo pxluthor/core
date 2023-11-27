@@ -1,0 +1,112 @@
+<!doctype html>
+{% load static %}
+
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">    
+
+    <title>Página de Livros</title>
+  </head>
+
+  <body>
+    <!--NAVBAR-->
+    <div class="container-fluid bg-light ">
+        <div class="row justify-content-center">
+    
+            <div class="col-xl-8 p-0" >
+    
+                <header>
+    
+              {% include 'fragments/navbar.html' %}
+              {% include 'fragments/carrossel2.html' %}
+
+                </header>
+            </div>
+        </div>
+    </div>
+
+    <main class="bg-light">
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-xl-8 bg-light ">
+                    <hr class="d-flex my-4">
+
+                    <div class="conteiner-fluid ">
+                        <span class="d-flex justify-content-center align-items-center ">
+                            <h1 class="fw-bold">Bem vindo a página de Livros ! </h1>
+                        </span>
+                    </div>
+
+                    {% for post in posts %}
+                        <div class="card mx-5 my-2 px-5 py-2">
+
+                            <a href="{% url 'post_detail' post.id %}">
+
+                                <img src="{{ post.imagem_capa.url }}" 
+                                    class="card-img-top" 
+                                    alt="Foto do card">
+                            </a>
+        
+                            <div class="card-body pb-4">
+                          
+                                <h5 class="card-title">
+                                    <a href="{% url 'post_detail' post.id %}" 
+                                        style="text-decoration: none">{{ post.titulo }}
+                                    </a>
+                                </h5>
+                                <p class="card-text">
+                                    {{ post.resumo |safe }}
+                                </p>
+        
+                                <p class="card-text">
+                                    <small class="text-muted d-flex justify-content-end">
+                                        {{ post.data_publicacao }}
+                                    </small>
+                                </p>
+        
+                                <a href="#" class="btn btn-primary d-flex justify-content-center">Enviar</a>
+        
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <div class="d-flex justify-content-center">
+        
+                                            <div class="span me-3 btn">
+                                                <i class="fa-solid fa-heart"></i> Curtir
+                                            </div>
+
+                                            <div class="span me-3 btn">
+                                                <i class="fa-solid fa-comment"></i> comentar
+                                            </div>
+                                            <div class="span me-3 btn">
+                                                <i class="fa-solid fa-share"></i> Compartilhar
+                                            </div>
+        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}  
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include 'fragments/footer.html' with var_position='position-sticky' %}
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+        crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRIMEIRO TEMPLATE</title>
+</head>
+<body>
+
+    <h2>Posts cadastrados</h2>
+    <ul>
+        {%for post in posts%}
+        <a href="{% url 'post_detail' post.id %}">
+        {{post.autor}} - {{post.titulo}} 
+        </a> <br/>
+        {% endfor %}
+    </ul>
+
+    {% load static %}
+    <img src="{% static 'blog/django.jpg'%}">
+
+
+
+</body>
+</html>
