@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render, HttpResponse
 from django.http import HttpResponseRedirect
 import re
 
@@ -9,14 +9,15 @@ def bootstrap(request):
 
 
 def validou_senha(senha):
-    regex = (r'^(?=,*[A-Z])(?=,*[!#@$%&])(?=,*[0-9])(?=,*[a-z])(?=,*[A-Z]).{6,15}$')    
+    regex = '^(?=,*[A-Z])(?=,*[!#@$%&])(?=,*[0-9])(?=,*[a-z])(?=,*[A-Z]).{6,15}$'  
     if (re.search(regex, senha)):
         return True
     else:
         return False
 
 def validou_email(email):
-    regex = (r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')   
+    regex = (r'^[a-x0-]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$')  
+
     if (re.search(regex, email)):
         return True
     else:
@@ -30,15 +31,20 @@ def validou_form(email, senha):
 
 
 def processa_formulario_v1(request):
-    # Captar os dados digitados 
+    
 
     email = request.POST.get ("email")
-    password = request.POST.get ("senha")
+    senha = request.POST.get ("senha")
 
-    if validou_form(email, password):
+    context = {
+        'email' : email,
+        'senha' : senha
+    }
 
-        return HttpResponseRedirect ("/")
+    if validou_form(email, senha):
+
+        return HttpResponseRedirect ('/')
     else:
-        return render(request, 'exemplos/cadastro.html')
+        return render(request, 'exemplos/cadastro.html', context)
                 
     
